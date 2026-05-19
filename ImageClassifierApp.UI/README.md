@@ -36,11 +36,14 @@ ImageClassifierApp/
 ## How to Run & Dataset Guide
 
 1.Clone the repository and open the solution file (.sln) in Visual Studio.
+
 2.Prepare your dataset inside MyDataset/ with Train/ and Test/ subfolders (e.g., Apple, Banana).
+
 3. Create train_data.txt and test_data.txt using absolute paths mapped to labels:
 ```text
 C:\YourPath\MyDataset\Train\Apple\elma1.jpg,Apple
 C:\YourPath\MyDataset\Train\Banana\muz1.jpg,Banana
 ```
 4.Update the dataset file paths inside MainForm.cs to match your local paths.
+
 5.Build and run the application. Use the UI buttons to load data, train the model, and make predictions.
