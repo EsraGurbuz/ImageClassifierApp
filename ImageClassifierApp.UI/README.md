@@ -24,7 +24,7 @@ ImageClassifierApp/
 │   ├── Services/          # Concrete business logic & ML pipelines (Singleton)
 │   ├── UI/                # MainForm and visual layers (Code-behind / Partial classes)
 │   └── MyDataset/         # Train/Test folders and data mapping files
-
+```
 ## 🛠️ Installation & Requirements
 - **IDE:** Visual Studio 2022 (with .NET Desktop Development workload enabled)
 - **Framework:** .NET 8.0
@@ -41,5 +41,6 @@ ImageClassifierApp/
 ```text
 C:\YourPath\MyDataset\Train\Apple\elma1.jpg,Apple
 C:\YourPath\MyDataset\Train\Banana\muz1.jpg,Banana
+```
 4.Update the dataset file paths inside MainForm.cs to match your local paths.
 5.Build and run the application. Use the UI buttons to load data, train the model, and make predictions.
