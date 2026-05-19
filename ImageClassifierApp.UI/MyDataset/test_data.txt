@@ -1,0 +1,7 @@
+﻿C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Test\Apple\TestApple1.jpeg,Apple
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Test\Apple\TestApple2.jpeg,Apple
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Test\Apple\TestApple3.jpeg,Apple
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Test\Apple\TestApple4.jpeg,Apple
+
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Test\Banana\TestBanana1.jpeg,Banana
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Test\Banana\TestBanana2.jpeg,Banana

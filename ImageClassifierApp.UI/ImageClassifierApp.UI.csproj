@@ -9,10 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Models\" />
-    <Folder Include="UI\" />
-    <Folder Include="Services\" />
+    <PackageReference Include="Microsoft.ML" Version="5.0.0" />
+    <PackageReference Include="Microsoft.ML.ImageAnalytics" Version="5.0.0" />
+    <PackageReference Include="Microsoft.ML.Vision" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MyDataset\Test\Apple\" />
+    <Folder Include="MyDataset\Test\Banana\" />
+    <Folder Include="MyDataset\Train\Apple\" />
+    <Folder Include="MyDataset\Train\Banana\" />
   </ItemGroup>
 
 </Project>

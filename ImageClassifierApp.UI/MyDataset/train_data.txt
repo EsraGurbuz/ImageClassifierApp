@@ -1,0 +1,16 @@
+﻿C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Train\Apple\TrainApple1.jpeg,Apple
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Train\Apple\TrainApple2.jpeg,Apple
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Train\Apple\TrainApple3.jpeg,Apple
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Train\Apple\TrainApple4.jpeg,Apple
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Train\Apple\TrainApple5.jpeg,Apple
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Train\Apple\TrainApple6.jpeg,Apple
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Train\Apple\TrainApple7.jpeg,Apple
+
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Train\Banana\TrainBanana1.jpeg,Banana
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Train\Banana\TrainBanana2.jpeg,Banana
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Train\Banana\TrainBanana3.jpeg,Banana
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Train\Banana\TrainBanana4.jpeg,Banana
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Train\Banana\TrainBanana5.jpeg,Banana
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Train\Banana\TrainBanana6.jpeg,Banana
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Train\Banana\TrainBanana7.jpeg,Banana
+C:\Users\Esra\source\repos\ImageClassifierApp\ImageClassifierApp.UI\MyDataset\Train\Banana\TrainBanana8.jpeg,Banana

@@ -4,10 +4,11 @@ namespace ImageClassifierApp.Models
 {
     public class ModelInput
     {
-        [LoadColumn(0)]
-        public string ImagePath { get; set; }
+        // ML.NET'in görüntüyü doğrudan ham byte dizisi olarak yüklemesini sağlıyoruz
+        [ColumnName("input")]
+        public byte[] ImageBytes { get; set; }
 
-        [LoadColumn(1)]
+        [ColumnName("Label")]
         public string Label { get; set; }
     }
 }

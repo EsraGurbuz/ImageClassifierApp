@@ -5,6 +5,7 @@ using Microsoft.ML;
 using ImageClassifierApp.Interfaces;
 using ImageClassifierApp.Models;
 
+
 namespace ImageClassifierApp.Services
 {
     public class ImageClassifierService : IImageClassifierService
@@ -48,18 +49,36 @@ namespace ImageClassifierApp.Services
             {
                 // 1. Data Loading
                 // The trainDataPath will contain a text/csv file with image paths and labels.
-                IDataView dataView = _mlContext.Data.LoadFromTextFile<ModelInput>(
-                    path: trainDataPath,
-                    hasHeader: false,
-                    separatorChar: ',');
+                // train_data.txt dosyasındaki yolları okuyup resimleri doğrudan byte dizisine çeviriyoruz
+                var lines = File.ReadAllLines(trainDataPath);
+                var list = new System.Collections.Generic.List<ModelInput>();
+
+                foreach (var line in lines)
+                {
+                    if (string.IsNullOrWhiteSpace(line)) continue;
+                    var parts = line.Split(',');
+                    if (parts.Length < 2) continue;
+
+                    string path = parts[0];
+                    string label = parts[1];
+
+                    if (File.Exists(path))
+                    {
+                        list.Add(new ModelInput
+                        {
+                            ImageBytes = File.ReadAllBytes(path), // Resmi diske gidip ham byte olarak okuyoruz
+                            Label = label
+                        });
+                    }
+                }
+
+                // Oluşturduğumuz listeyi ML.NET'in anlayacağı IDataView yapısına dönüştürüyoruz
+                IDataView dataView = _mlContext.Data.LoadFromEnumerable(list);
 
                 // 2. Data Preprocessing Pipeline
-                // We read the image paths, load the images into memory, and resize them to dimensions that ML.NET can understand (e.g., 224x224).
-                var pipeline = _mlContext.Transforms.LoadImages(outputColumnName: "input", imageFolder: null, inputColumnName: nameof(ModelInput.ImagePath))
-                    .Append(_mlContext.Transforms.ResizeImages(outputColumnName: "input", imageWidth: 224, imageHeight: 224, inputColumnName: "input"))
-                    .Append(_mlContext.Transforms.ExtractPixels(outputColumnName: "input", inputColumnName: "input"))
-                    .Append(_mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "LabelKey", inputColumnName: nameof(ModelInput.Label)))
-                    // Image Classification Algorithm (Deep Learning architecture)
+                // Verimiz doğrudan byte dizisi olarak yüklendiği için ek bir imaj dönüşümüne gerek kalmadı!
+                var pipeline = _mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "LabelKey", inputColumnName: nameof(ModelInput.Label))
+                    // Image Classification Eğiticisi (Doğrudan input isimli byte dizisini besliyoruz)
                     .Append(_mlContext.MulticlassClassification.Trainers.ImageClassification(
                         featureColumnName: "input",
                         labelColumnName: "LabelKey"))
@@ -80,9 +99,13 @@ namespace ImageClassifierApp.Services
                 throw new InvalidOperationException("Model henüz eğitilmedi veya yüklenmedi! Lütfen önce modeli eğitin.");
             }
 
-            var input = new ModelInput { ImagePath = imagePath };
+            // Arayüzden gelen dosya yolunu, tahmin motoruna vermeden önce ham byte dizisine çeviriyoruz
+            var input = new ModelInput
+            {
+                ImageBytes = File.ReadAllBytes(imagePath)
+            };
 
-            // Concrete prediction processing point
+            // Somut tahmin işleme noktası
             return _predictionEngine.Predict(input);
         }
 
@@ -90,7 +113,7 @@ namespace ImageClassifierApp.Services
         {
             if (_trainedModel == null)
             {
-                throw new InvalidOperationException("Değerlendirilecek eğitilmiş bir model bulunamadı.");
+                throw new InvalidOperationException("No trained model was found to be evaluated.");
             }
 
             IDataView testDataView = _mlContext.Data.LoadFromTextFile<ModelInput>(path: testDataPath, hasHeader: false, separatorChar: ',');

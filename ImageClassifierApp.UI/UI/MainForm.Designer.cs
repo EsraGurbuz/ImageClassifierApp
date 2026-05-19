@@ -32,34 +32,35 @@
             btnClassify = new Button();
             picSelectedImage = new PictureBox();
             lblResult = new Label();
+            btnTrain = new Button();
             ((System.ComponentModel.ISupportInitialize)picSelectedImage).BeginInit();
             SuspendLayout();
             // 
             // btnSelectImage
             // 
-            btnSelectImage.Location = new Point(553, 38);
+            btnSelectImage.Location = new Point(134, 38);
             btnSelectImage.Name = "btnSelectImage";
             btnSelectImage.Size = new Size(94, 29);
             btnSelectImage.TabIndex = 0;
             btnSelectImage.Text = "Select Image";
             btnSelectImage.UseVisualStyleBackColor = true;
-            btnSelectImage.Click += this.button1_Click;
+            btnSelectImage.Click += btnSelectImage_Click;
             // 
             // btnClassify
             // 
-            btnClassify.Location = new Point(553, 73);
+            btnClassify.Location = new Point(234, 38);
             btnClassify.Name = "btnClassify";
             btnClassify.Size = new Size(94, 29);
             btnClassify.TabIndex = 1;
             btnClassify.Text = "Classify";
             btnClassify.UseVisualStyleBackColor = true;
-            btnClassify.Click += this.button1_Click_1;
+            btnClassify.Click += btnClassify_Click;
             // 
             // picSelectedImage
             // 
-            picSelectedImage.Location = new Point(431, 206);
+            picSelectedImage.Location = new Point(134, 73);
             picSelectedImage.Name = "picSelectedImage";
-            picSelectedImage.Size = new Size(125, 62);
+            picSelectedImage.Size = new Size(575, 290);
             picSelectedImage.SizeMode = PictureBoxSizeMode.Zoom;
             picSelectedImage.TabIndex = 2;
             picSelectedImage.TabStop = false;
@@ -67,25 +68,34 @@
             // lblResult
             // 
             lblResult.AutoSize = true;
-            lblResult.Location = new Point(518, 164);
+            lblResult.Location = new Point(466, 42);
             lblResult.Name = "lblResult";
             lblResult.Size = new Size(126, 20);
             lblResult.TabIndex = 3;
             lblResult.Text = "Result: Expected...";
-            lblResult.Click += this.label1_Click;
+            // 
+            // btnTrain
+            // 
+            btnTrain.Location = new Point(334, 38);
+            btnTrain.Name = "btnTrain";
+            btnTrain.Size = new Size(94, 29);
+            btnTrain.TabIndex = 4;
+            btnTrain.Text = "Train";
+            btnTrain.UseVisualStyleBackColor = true;
+            btnTrain.Click += btnTrain_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnTrain);
             Controls.Add(lblResult);
             Controls.Add(picSelectedImage);
             Controls.Add(btnClassify);
             Controls.Add(btnSelectImage);
             Name = "MainForm";
             Text = "Form1";
-            Load += this.MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)picSelectedImage).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -97,5 +107,6 @@
         private Button btnClassify;
         private PictureBox picSelectedImage;
         private Label lblResult;
+        private Button btnTrain;
     }
 }
