@@ -13,7 +13,28 @@ namespace ImageClassifierApp.Services
         private ITransformer _trainedModel;
         private PredictionEngine<ModelInput, ModelOutput> _predictionEngine;
 
-        public ImageClassifierService()
+        // --- SINGLETON PATTERN AREAS ---
+        private static ImageClassifierService _instance;
+        private static readonly object _lock = new object();
+
+        // Global access point
+        public static ImageClassifierService Instance
+        {
+            get
+            {
+                // Thread-safe (Concurrent safe) Singleton check
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new ImageClassifierService();
+                    }
+                    return _instance;
+                }
+            }
+        }
+
+        private ImageClassifierService()
         {
             //MLContext is the heart of ML.NET operations.
             // By providing a seed value, we ensure that the results are deterministic (consistent) across runs.
