@@ -1,49 +1,78 @@
-﻿# ImageClassifierApp 📸🤖
+# 📸 ImageClassifierApp (Desktop Deep Learning Application)
 
-An advanced Image Classification application built with **C#**, **.NET 8.0**, **Windows Forms**, and **ML.NET** (Machine Learning for .NET). Designed with strict adherence to Object-Oriented Programming (OOP) principles, clean architecture, and modern data-binding pipelines.
+This project was developed as part of the **Object-Oriented Programming (OOP)** course at **Fırat University, Software Engineering Department**. The application is an advanced desktop image classification platform featuring deep learning integration powered by ML.NET and an optimized TensorFlow backend.
 
-## 🚀 Key Features
-- **Deep Learning Integration:** Uses ML.NET's ImageClassification trainer (leveraging an optimized TensorFlow backend via Transfer Learning with ResNet50).
-- **Asynchronous Execution:** Model training and resource-heavy operations are safely offloaded to background threads using `Task.Run` and `async/await` patterns to keep the User Interface (UI) smooth and responsive.
-- **Robust Data Hydration:** Replaced rigid, error-prone text loaders with a custom dynamic `File.ReadAllBytes` workflow that loads images directly as raw byte streams into memory, preventing deep learning schema mismatches.
-- **Clean Architecture:** Strictly separated into `Interfaces`, `Services`, `Models`, and `UI` layers.
+---
 
-## 🧠 Applied Software Patterns & OOP Concepts
-- **Singleton Pattern:** Engineered `ImageClassifierService` as a thread-safe, double-checked locking Singleton to manage heavy ML contexts, prediction engines, and optimize RAM consumption.
-- **Abstraction & Loose Coupling:** The UI layer interacts exclusively with the `IImageClassifierService` interface. This allows underlying ML frameworks or training pipelines to be swapped without causing breaking changes in the presentation layer.
-- **Data Transfer Objects (DTO):** Utilized robust `ModelInput` and `ModelOutput` classes to enforce the Single Responsibility Principle (SRP) and ensure schema consistency (`byte[]` data representation).
-- **Event-Driven Programming:** Leveraged the Windows Forms event architecture to link user components seamlessly to asynchronous back-end service methods.
+## 🎓 Student Information
 
-## 📁 Project Structure
+* **Name & Surname:** Esra Gürbüz
+* **Student ID:** 230543001
+* **University:** Fırat University
+* **Department:** Software Engineering (Sophomore / 2nd Year)
+
+---
+
+## 🚀 Architectural & OOP Highlights
+
+This application avoids "Spaghetti Code" by segregating components into decoupled, dedicated architectural layers following production-ready standards:
+
+* **Abstraction & Interfaces (`IImageClassifierService`):** Core business logic operations and training pipelines are abstracted through interfaces, enforcing a strict contract and allowing the underlying ML framework to be swapped seamlessly.
+* **Dependency Inversion (Loose Coupling):** The presentation layer (`MainForm`) relies exclusively on the `IImageClassifierService` abstraction rather than concrete implementations, preventing rigid class dependencies.
+* **Singleton Design Pattern:** Initializing the machine learning context and managing prediction engines is highly resource-intensive for RAM. To optimize memory consumption and enforce thread safety, the core service layer is engineered using a double-checked locking Singleton pattern.
+* **Robust Data Hydration:** Replaced rigid, error-prone text loaders with a custom dynamic `File.ReadAllBytes` workflow. The system loads images from the local storage directly as raw `byte[]` (byte arrays) into memory, ensuring strict schema alignment with the deep learning model and eliminating runtime uyuşmazlığı.
+* **Asynchronous Execution:** Deep learning training operations push the processor to full capacity. To preserve a smooth user experience, heavy pipeline orchestration is offloaded to background threads using `Task.Run` and `async/await` patterns, ensuring the presentation layer never freezes.
+* **Event-Driven Programming:** The UI layer operates entirely on an asynchronous event-driven model, natively capturing user actions (clicks, training requests, image selections) via specialized WinForms Event Handlers.
+
+---
+
+## 📁 Directory Structure
+
+The solution is divided into four distinct modules to achieve a clear separation of concerns:
+
 ```text
 ImageClassifierApp/
 │
 ├── ImageClassifierApp.UI/
-│   ├── Interfaces/        # Service contracts (Abstractions)
-│   ├── Models/            # DTOs, data schemas, and ML byte structures (byte[] representation)
-│   ├── Services/          # Concrete business logic & ML pipelines (Singleton)
-│   ├── UI/                # MainForm and visual layers (Code-behind / Partial classes)
-│   └── MyDataset/         # Train/Test folders and data mapping files
+│   ├── Interfaces/        # Service contracts, abstract business pipelines, and API boundaries
+│   │   └── IImageClassifierService.cs
+│   │
+│   ├── Models/            # Domain Data Transfer Objects (DTO) and strict ML schema models
+│   │   ├── ModelInput.cs  # Encapsulates raw byte array representation (byte[]) of input data
+│   │   └── ModelOutput.cs # Encapsulates classification scores and predicted label outcomes
+│   │
+│   ├── Services/          # Concrete business logic, ML pipelines, and Singleton implementation
+│   │   └── ImageClassifierService.cs
+│   │
+│   └── UI/                # Presentation layer forms, visual state management, and code-behind
+│       ├── MainForm.cs
+│       └── Program.cs     # Application bootstrapper and main entry point
 ```
-## 🛠️ Installation & Requirements
-- **IDE:** Visual Studio 2022 (with .NET Desktop Development workload enabled)
-- **Framework:** .NET 8.0
-- **NuGet Packages:**
-  - Microsoft.ML
-  - Microsoft.ML.ImageAnalytics
-  - Microsoft.ML.Vision
+## 🛠️ Tech Stack & Dependencies
 
-## How to Run & Dataset Guide
+* **Language:** C#
+* **Framework:** .NET 8.0 Ecosystem
+* **User Interface:** Windows Forms (WinForms)
+* **Core Framework:** ML.NET (Machine Learning for .NET)
+* **Deep Learning Architecture:** ResNet50 Architecture (TensorFlow Backend via Transfer Learning)
+* **Dependencies:** (Managed via NuGet Package Manager)
+  * `Microsoft.ML`
+  * `Microsoft.ML.ImageAnalytics`
+  * `Microsoft.ML.Vision`
 
-1.Clone the repository and open the solution file (.sln) in Visual Studio.
+---
 
-2.Prepare your dataset inside MyDataset/ with Train/ and Test/ subfolders (e.g., Apple, Banana).
+## 🔧 Installation & Setup
 
-3. Create train_data.txt and test_data.txt using absolute paths mapped to labels:
-```text
-C:\YourPath\MyDataset\Train\Apple\elma1.jpg,Apple
-C:\YourPath\MyDataset\Train\Banana\muz1.jpg,Banana
-```
-4.Update the dataset file paths inside MainForm.cs to match your local paths.
+1. Clone this repository to your local machine:
+   ```bash
+   git clone [https://github.com/your-username/ImageClassifierApp.git](https://github.com/your-username/ImageClassifierApp.git)
+   ```
+2. Open the `ImageClassifierApp.sln` solution file in **Visual Studio**.
+3. Restore the NuGet packages (the IDE will automatically fetch and restore `Microsoft.ML` and its dependencies).
+4. Prepare your local dataset folder structures inside the project directory (e.g., separating training and testing image sets mapped within your local paths).
+5. Build the project using `Ctrl + Shift + B` to ensure all dependencies are linked.
+6. Press `F5` or click the green **Start** button to launch the desktop application.
 
-5.Build and run the application. Use the UI buttons to load data, train the model, and make predictions.
+---
+*Developed for educational purposes as a technical OOP portfolio milestone.*
